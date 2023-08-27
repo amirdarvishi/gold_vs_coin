@@ -1,27 +1,28 @@
-import pandas as pd
-import matplotlib.pyplot as plt 
+import pandas as pd 
+import matplotlib.pyplot as plt
 import datetime
 
 gold_gram = pd.read_csv('geram18_D.txt')
 rob = pd.read_csv('rob_D.txt')
+# <Ticker> <Per>  <DTYYYYMMDD>  <TIME>    <OPEN>    <HIGH>     <LOW>   <CLOSE>  <TSEClose>
 
 gold_gram = gold_gram[['<Ticker>','<DTYYYYMMDD>','<CLOSE>']]
 rob = rob[['<Ticker>','<DTYYYYMMDD>','<CLOSE>']]
 
-gold_gram['close22'] = (gold_gram['<CLOSE>']* (22 /18)).astype(int)
+gold_gram['close22'] = (gold_gram['<CLOSE>'] * (22/18)).astype(int)
 
-complete_df = pd.merge(gold_gram,rob,on = '<DTYYYYMMDD>',how = 'inner')
+df_complete = pd.merge(gold_gram,rob,how='inner',on='<DTYYYYMMDD>')
+df_complete['indice'] = df_complete['<CLOSE>_y']/df_complete['close22']
 
-complete_df['indice'] = complete_df['<CLOSE>_y'] / complete_df['close22']
+years = [str(y)[:4] for y in df_complete['<DTYYYYMMDD>']]
+months = [str(m)[4:6] for m in df_complete['<DTYYYYMMDD>']]
 
-years = [str(y)[:4] for y in complete_df['<DTYYYYMMDD>']]
-months = [str(m)[4:6] for m in complete_df['<DTYYYYMMDD>']]
+dates = [datetime.date(int(y),int(m),1) for y,m in zip(years,months)]
 
-dates = [datetime.date(int(y),int(m),1) for y,m in zip(years, months)]
-complete_df['date'] = dates
+df_complete['date'] = dates
 
-plt.plot(complete_df['date'], complete_df['indice'])
-plt.axhline(y=2.5,color = 'r')
-plt.xlabel('Date')
+plt.plot(df_complete['date'],df_complete['indice'])
+plt.xlabel('date')
 plt.ylabel('indice')
+plt.axhline(y=2.5,color ='r')
 plt.show()
