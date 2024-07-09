@@ -30,6 +30,3 @@ git clone https://github.com/amirdarvishi/gold_vs_coin.git
 cd gold_vs_coin
 
 
-
-Save this content into a file named `README.md` in your project directory. Make sure the image file `Coin bubble chart.jpg` is placed correctly in the root directory of your repository.
-
