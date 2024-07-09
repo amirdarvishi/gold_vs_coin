@@ -21,8 +21,15 @@ This repository contains a Python script designed to perform arbitrage trading b
 - numpy library
 - matplotlib library
 
+
+
 ### Installation
 Clone the repository and navigate to the project directory:
 ```sh
-git clone https://github.com/yourusername/arbitrage-trading-gold-bahar-azadi.git
-cd arbitrage-trading-gold-bahar-azadi
+git clone https://github.com/amirdarvishi/gold_vs_coin.git
+cd gold_vs_coin
+
+
+
+Save this content into a file named `README.md` in your project directory. Make sure the image file `Coin bubble chart.jpg` is placed correctly in the root directory of your repository.
+
